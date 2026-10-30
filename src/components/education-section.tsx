@@ -23,7 +23,7 @@ const education = [
     degree: "Secondary School Certificate (SSC)",
     institution: "Cumilla Modern High School",
     location: "Cumilla, Bangladesh",
-    period: "2020",
+    period: "2018",
     result: "GPA 5.00 out of 5.00",
   },
 ];
