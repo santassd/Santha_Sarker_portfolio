@@ -69,17 +69,23 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.45 }}
         >
-          <Button size="lg" className="px-8 h-12 text-base gap-2" asChild>
-            <a href="#projects">View My Work</a>
+          <Button
+            size="lg"
+            className="px-8 h-12 text-base gap-2"
+            render={<a href="#projects" />}
+            nativeButton={false}
+          >
+            View My Work
           </Button>
 
           <Button
             size="lg"
             variant="outline"
             className="px-8 h-12 text-base gap-2"
-            asChild
+            render={<a href="#contact" />}
+            nativeButton={false}
           >
-            <a href="#contact">Let&apos;s Talk</a>
+            Let&apos;s Talk
           </Button>
         </motion.div>
 
