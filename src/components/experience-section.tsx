@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 const experiences = [
   {
     company: "Sysonex",
-    role: "Frontend Developer – Risk Management Software",
+    role: "Frontend Developer ",
     period: "July 2024 – Present",
     type: "Remote",
     description:
@@ -13,7 +13,7 @@ const experiences = [
   },
   {
     company: "Sysonex",
-    role: "Mobile App Developer – Resident Management App",
+    role: "Mobile App Developer",
     period: "May 2024 – July 2024",
     type: "Remote",
     description:
@@ -21,7 +21,7 @@ const experiences = [
   },
   {
     company: "Ideapeel",
-    role: "Frontend Developer – Event Management Software",
+    role: "Frontend Developer",
     period: "Aug 2024 – Mar 2025",
     type: "Remote",
     description:
