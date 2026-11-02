@@ -8,12 +8,16 @@ import SkillsSection from "@/components/skills-section";
 import ContactSection from "@/components/contact-section";
 import Footer from "@/components/footer";
 import HeroSection from "@/components/hero-section.tsx";
+import AboutSection from "@/components/about-section";
+import AboutLamp from "@/components/about-lamp";
 
 export default function Home() {
   return (
     <main className="relative min-h-screen">
       <Navbar />
       <HeroSection />
+      <AboutLamp />
+     
       <ProjectsSection />
       <ExperienceSection />
       <EducationSection />

@@ -49,7 +49,6 @@ const projects = [
   },
 ];
 
-// Floating background words
 const floatingWords = [
   "Next.js",
   "React",
@@ -73,9 +72,9 @@ function FloatingWord({ word, index }: { word: string; index: number }) {
     });
   }, []);
 
-  const duration = 16 + (index % 6) * 2.5;
-  const xRange = 50 + (index % 4) * 15;
-  const yRange = 60 + (index % 5) * 12;
+  const duration = 18 + (index % 5) * 2.2;
+  const xRange = 40 + (index % 4) * 12;
+  const yRange = 50 + (index % 5) * 10;
 
   return (
     <motion.span
@@ -84,14 +83,14 @@ function FloatingWord({ word, index }: { word: string; index: number }) {
       animate={{
         x: [0, xRange, -xRange * 0.6, xRange * 0.3, 0],
         y: [0, -yRange, yRange * 0.5, -yRange * 0.25, 0],
-        rotate: [0, 6, -5, 3, 0],
-        opacity: [0.06, 0.18, 0.1, 0.16, 0.06],
+        rotate: [0, 5, -4, 2, 0],
+        opacity: [0.05, 0.14, 0.08, 0.12, 0.05],
       }}
       transition={{
         duration,
         repeat: Infinity,
         ease: "easeInOut",
-        delay: index * 0.4,
+        delay: index * 0.35,
       }}
     >
       {word}
@@ -100,20 +99,124 @@ function FloatingWord({ word, index }: { word: string; index: number }) {
 }
 
 
-const cardVariants = [
-  { hidden: { opacity: 0, x: -80, y: 30 }, visible: { opacity: 1, x: 0, y: 0 } }, // left
-  { hidden: { opacity: 0, x: 80, y: 30 }, visible: { opacity: 1, x: 0, y: 0 } },  // right
-  { hidden: { opacity: 0, y: 80 }, visible: { opacity: 1, y: 0 } },                 // bottom
-  { hidden: { opacity: 0, y: -60, x: -40 }, visible: { opacity: 1, y: 0, x: 0 } }, // top-left
-  { hidden: { opacity: 0, y: -60, x: 40 }, visible: { opacity: 1, y: 0, x: 0 } },  // top-right
-];
+function ElectricSparks({ delay = 0 }: { delay?: number }) {
+  
+  const sparkColor = "#22d3ee"; 
+  const sparkColorSoft = "rgba(34, 211, 238, 0.7)";
+
+  return (
+    <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-2xl z-20">
+      
+      <motion.div
+        className="absolute left-0 top-[8%] h-[84%] w-[3px] rounded-full"
+        style={{
+          background: `linear-gradient(to bottom, transparent, ${sparkColor}, #ffffff, ${sparkColor}, transparent)`,
+          boxShadow: `0 0 12px 3px ${sparkColorSoft}`,
+        }}
+        animate={{
+          opacity: [0.35, 1, 0.45, 1, 0.3],
+          scaleY: [0.7, 1, 0.75, 1.05, 0.65],
+        }}
+        transition={{
+          duration: 1.3,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay,
+        }}
+      />
+
+      
+      <motion.div
+        className="absolute right-0 top-[8%] h-[84%] w-[3px] rounded-full"
+        style={{
+          background: `linear-gradient(to bottom, transparent, ${sparkColor}, #ffffff, ${sparkColor}, transparent)`,
+          boxShadow: `0 0 12px 3px ${sparkColorSoft}`,
+        }}
+        animate={{
+          opacity: [0.3, 1, 0.4, 0.95, 0.35],
+          scaleY: [0.65, 1.05, 0.7, 1, 0.6],
+        }}
+        transition={{
+          duration: 1.45,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: delay + 0.18,
+        }}
+      />
+
+      {/* TOP */}
+      <motion.div
+        className="absolute top-0 left-[8%] w-[84%] h-[3px] rounded-full"
+        style={{
+          background: `linear-gradient(to right, transparent, ${sparkColor}, #ffffff, ${sparkColor}, transparent)`,
+          boxShadow: `0 0 12px 3px ${sparkColorSoft}`,
+        }}
+        animate={{
+          opacity: [0.3, 1, 0.4, 1, 0.25],
+          scaleX: [0.6, 1, 0.7, 1.05, 0.55],
+        }}
+        transition={{
+          duration: 1.5,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: delay + 0.3,
+        }}
+      />
+
+      {/* BOTTOM */}
+      <motion.div
+        className="absolute bottom-0 left-[8%] w-[84%] h-[3px] rounded-full"
+        style={{
+          background: `linear-gradient(to right, transparent, ${sparkColor}, #ffffff, ${sparkColor}, transparent)`,
+          boxShadow: `0 0 12px 3px ${sparkColorSoft}`,
+        }}
+        animate={{
+          opacity: [0.35, 0.95, 0.4, 1, 0.3],
+          scaleX: [0.55, 1.05, 0.65, 1, 0.5],
+        }}
+        transition={{
+          duration: 1.35,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: delay + 0.45,
+        }}
+      />
+
+      {/* Corner dots */}
+      {[
+        { top: 2, left: 2 },
+        { top: 2, right: 2 },
+        { bottom: 2, left: 2 },
+        { bottom: 2, right: 2 },
+      ].map((pos, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-2 h-2 rounded-full"
+          style={{
+            ...pos,
+            background: sparkColor,
+            boxShadow: `0 0 10px 3px ${sparkColor}`,
+          }}
+          animate={{
+            opacity: [0.2, 1, 0.3, 1, 0.15],
+            scale: [0.7, 1.4, 0.8, 1.3, 0.6],
+          }}
+          transition={{
+            duration: 1.2,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: delay + i * 0.12,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
 
 export default function ProjectsSection() {
   return (
     <section id="projects" className="relative py-24 px-6 overflow-hidden">
-  
       <div className="absolute inset-0 -z-10 overflow-hidden">
-
         {floatingWords.map((word, index) => (
           <FloatingWord key={`${word}-${index}`} word={word} index={index} />
         ))}
@@ -136,23 +239,14 @@ export default function ProjectsSection() {
           }}
           transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
         />
-        <motion.div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-primary/5 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-        />
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
-       
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Projects</h2>
@@ -162,70 +256,70 @@ export default function ProjectsSection() {
           </p>
         </motion.div>
 
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, index) => {
-            const variant = cardVariants[index % cardVariants.length];
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.title}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{
+                duration: 0.7,
+                delay: index * 0.1,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              whileHover={{ y: -6 }}
+              className="group relative rounded-2xl border border-border bg-card/70 backdrop-blur-md p-6 transition-all duration-300 hover:border-cyan-400/40 hover:shadow-xl hover:shadow-cyan-500/10 overflow-hidden"
+            >
+              {/* Electric Sparks - always on */}
+              <ElectricSparks delay={index * 0.2} />
 
-            return (
-              <motion.div
-                key={project.title}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-50px" }}
-                variants={variant}
-                transition={{ duration: 0.6, delay: index * 0.12, ease: "easeOut" }}
-                whileHover={{ y: -8, transition: { duration: 0.25 } }}
-                className="group relative rounded-2xl border border-border bg-card/70 backdrop-blur-md p-6 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300"
-              >
+              <div className="relative z-10">
+                <h3 className="text-xl font-semibold mb-3 group-hover:text-cyan-400 transition-colors duration-300">
+                  {project.title}
+                </h3>
+                <p className="text-muted-foreground text-sm mb-5 leading-relaxed">
+                  {project.description}
+                </p>
 
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
-
-                <div className="relative z-10">
-                  <h3 className="text-xl font-semibold mb-3">{project.title}</h3>
-                  <p className="text-muted-foreground text-sm mb-5 leading-relaxed">
-                    {project.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.tech.map((t) => (
-                      <Badge key={t} variant="secondary" className="text-xs">
-                        {t}
-                      </Badge>
-                    ))}
-                  </div>
-
-                  <div className="flex gap-3">
-                    {project.live && (
-                      <a
-                        href={project.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Button size="sm" variant="outline" className="gap-2">
-                          <IconExternalLink className="h-4 w-4" />
-                          Live
-                        </Button>
-                      </a>
-                    )}
-
-                    {project.github && (
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Button size="sm" variant="ghost" className="gap-2">
-                          <IconBrandGithub className="h-4 w-4" />
-                          Code
-                        </Button>
-                      </a>
-                    )}
-                  </div>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.tech.map((t) => (
+                    <Badge key={t} variant="secondary" className="text-xs">
+                      {t}
+                    </Badge>
+                  ))}
                 </div>
-              </motion.div>
-            );
-          })}
+
+                <div className="flex gap-3">
+                  {project.live && (
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Button size="sm" variant="outline" className="gap-2">
+                        <IconExternalLink className="h-4 w-4" />
+                        Live
+                      </Button>
+                    </a>
+                  )}
+
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Button size="sm" variant="ghost" className="gap-2">
+                        <IconBrandGithub className="h-4 w-4" />
+                        Code
+                      </Button>
+                    </a>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
