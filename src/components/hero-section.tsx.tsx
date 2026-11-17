@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { ParticleStage } from "@/components/particle-stage";
 
-const WORDS = ["Hi, I'm", "SANTHA", "SARKER", "PORTFOLIO" ] as const;
+const WORDS = ["Hi, I'm", "SANTHA SARKER", ] as const;
 
 
 

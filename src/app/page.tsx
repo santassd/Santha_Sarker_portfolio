@@ -19,10 +19,11 @@ export default function Home() {
       <AboutLamp />
 
       <ProjectsSection />
+            <SkillsSection />
       <ExperienceSection />
       <EducationSection />
       <CertificatesSection />
-      <SkillsSection />
+
       <ContactSection />
       <Footer />
     </main>

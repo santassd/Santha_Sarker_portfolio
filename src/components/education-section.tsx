@@ -16,7 +16,7 @@ const education = [
     degree: "Higher Secondary Certificate (HSC)",
     institution: "Cumilla Victoria Govt. College",
     location: "Cumilla, Bangladesh",
-    period: "2019 – 2020",
+    period: "2020",
     result: "GPA 5.00 out of 5.00",
   },
   {
@@ -28,7 +28,7 @@ const education = [
   },
 ];
 
-// Only Math + Science related symbols
+
 const floatingItems = [
   "∑", "∫", "π", "∞", "√", "∆", "θ", "λ", "≈", "≠", "∂", "∇",
   "α", "β", "γ", "σ", "μ", "φ", "ψ", "Ω", "ℝ", "ℤ", "ℕ",

@@ -9,7 +9,7 @@ const skillGroups = [
   },
   {
     title: "UI & Styling",
-    skills: ["Tailwind CSS", "shadcn/ui", "Mantine", "Figma", "Responsive Design", "Framer Motion", "Radix UI"],
+    skills: ["Tailwind CSS", "shadcn/ui", "Mantine", "Figma", "Responsive Design", "Framer Motion", "Radix UI", "Gsap"],
   },
   {
     title: "State Management",
@@ -21,7 +21,7 @@ const skillGroups = [
   },
   {
     title: "Project Management",
-    skills: ["Jira", "Microsoft Teams", "Blue"],
+    skills: ["Jira", "Blue",],
   },
   {
     title: "Communication & Tools",

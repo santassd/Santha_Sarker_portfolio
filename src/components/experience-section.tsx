@@ -29,12 +29,34 @@ const experiences = [
   },
 ];
 
-
 const devIcons = [
-  "</>", "{ }", "=>", "fn()", "const", "async", "await",
-  "React", "Next", "TS", "JS", "CSS", "API", "git",
-  "npm", "yarn", "UI", "UX", "Hook", "Props", "State",
-  "Redux", "Zustand", "Expo", "Node", "HTML", "JSON",
+  "</>",
+  "{ }",
+  "=>",
+  "fn()",
+  "const",
+  "async",
+  "await",
+  "React",
+  "Next",
+  "TS",
+  "JS",
+  "CSS",
+  "API",
+  "git",
+  "npm",
+  "yarn",
+  "UI",
+  "UX",
+  "Hook",
+  "Props",
+  "State",
+  "Redux",
+  "Zustand",
+  "Expo",
+  "Node",
+  "HTML",
+  "JSON",
 ];
 
 function TriangleFloatingIcon({
@@ -44,7 +66,6 @@ function TriangleFloatingIcon({
   item: string;
   index: number;
 }) {
- 
   const duration = 14 + (index % 6) * 1.8;
   const delay = index * 0.35;
 
@@ -56,7 +77,6 @@ function TriangleFloatingIcon({
         top: "10%",
       }}
       animate={{
- 
         x: [0, -160, 160, 0],
         y: [0, 220, 220, 0],
         rotate: [0, 120, 240, 360],
@@ -81,7 +101,6 @@ export default function ExperienceSection() {
       id="experience"
       className="relative py-24 px-6 bg-muted/20 overflow-hidden"
     >
-
       <div className="absolute inset-0 -z-10 overflow-hidden">
         {devIcons.map((item, index) => (
           <TriangleFloatingIcon
@@ -91,7 +110,6 @@ export default function ExperienceSection() {
           />
         ))}
 
-      
         <motion.div
           className="absolute -top-20 -left-20 w-[420px] h-[420px] bg-primary/12 rounded-full blur-3xl"
           animate={{
@@ -113,7 +131,6 @@ export default function ExperienceSection() {
       </div>
 
       <div className="max-w-4xl mx-auto relative z-10">
-
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -126,7 +143,6 @@ export default function ExperienceSection() {
             My professional journey so far
           </p>
         </motion.div>
-
 
         <div className="space-y-10">
           {experiences.map((exp, index) => (
@@ -142,7 +158,6 @@ export default function ExperienceSection() {
               }}
               className="relative group"
             >
-             
               <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-border/60" />
               <div className="absolute -left-[7px] top-3 w-4 h-4 rounded-full bg-primary shadow-[0_0_12px_hsl(var(--primary)/0.5)]" />
 

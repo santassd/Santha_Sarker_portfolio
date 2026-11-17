@@ -3,8 +3,13 @@
 import { motion } from "motion/react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { IconExternalLink, IconBrandGithub } from "@tabler/icons-react";
-import { useEffect, useState } from "react";
+import {
+  IconExternalLink,
+  IconBrandGithub,
+  IconChevronLeft,
+  IconChevronRight,
+} from "@tabler/icons-react";
+import { useState, useEffect } from "react";
 
 const projects = [
   {
@@ -49,195 +54,48 @@ const projects = [
   },
 ];
 
-const floatingWords = [
-  "Next.js",
-  "React",
-  "TypeScript",
-  "Expo",
-  "Zustand",
-  "Mantine",
-  "Tailwind",
-  "API",
-  "Redux",
-  "Framer",
-];
-
-function FloatingWord({ word, index }: { word: string; index: number }) {
-  const [start, setStart] = useState({ x: 50, y: 50 });
-
-  useEffect(() => {
-    setStart({
-      x: Math.random() * 90 + 5,
-      y: Math.random() * 90 + 5,
-    });
-  }, []);
-
-  const duration = 18 + (index % 5) * 2.2;
-  const xRange = 40 + (index % 4) * 12;
-  const yRange = 50 + (index % 5) * 10;
-
-  return (
-    <motion.span
-      className="absolute text-xs md:text-sm font-medium text-primary/10 select-none pointer-events-none whitespace-nowrap"
-      style={{ left: `${start.x}%`, top: `${start.y}%` }}
-      animate={{
-        x: [0, xRange, -xRange * 0.6, xRange * 0.3, 0],
-        y: [0, -yRange, yRange * 0.5, -yRange * 0.25, 0],
-        rotate: [0, 5, -4, 2, 0],
-        opacity: [0.05, 0.14, 0.08, 0.12, 0.05],
-      }}
-      transition={{
-        duration,
-        repeat: Infinity,
-        ease: "easeInOut",
-        delay: index * 0.35,
-      }}
-    >
-      {word}
-    </motion.span>
-  );
-}
-
-
-function ElectricSparks({ delay = 0 }: { delay?: number }) {
-  
-  const sparkColor = "#22d3ee"; 
-  const sparkColorSoft = "rgba(34, 211, 238, 0.7)";
-
-  return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-2xl z-20">
-      
-      <motion.div
-        className="absolute left-0 top-[8%] h-[84%] w-[3px] rounded-full"
-        style={{
-          background: `linear-gradient(to bottom, transparent, ${sparkColor}, #ffffff, ${sparkColor}, transparent)`,
-          boxShadow: `0 0 12px 3px ${sparkColorSoft}`,
-        }}
-        animate={{
-          opacity: [0.35, 1, 0.45, 1, 0.3],
-          scaleY: [0.7, 1, 0.75, 1.05, 0.65],
-        }}
-        transition={{
-          duration: 1.3,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay,
-        }}
-      />
-
-      
-      <motion.div
-        className="absolute right-0 top-[8%] h-[84%] w-[3px] rounded-full"
-        style={{
-          background: `linear-gradient(to bottom, transparent, ${sparkColor}, #ffffff, ${sparkColor}, transparent)`,
-          boxShadow: `0 0 12px 3px ${sparkColorSoft}`,
-        }}
-        animate={{
-          opacity: [0.3, 1, 0.4, 0.95, 0.35],
-          scaleY: [0.65, 1.05, 0.7, 1, 0.6],
-        }}
-        transition={{
-          duration: 1.45,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: delay + 0.18,
-        }}
-      />
-
-      {/* TOP */}
-      <motion.div
-        className="absolute top-0 left-[8%] w-[84%] h-[3px] rounded-full"
-        style={{
-          background: `linear-gradient(to right, transparent, ${sparkColor}, #ffffff, ${sparkColor}, transparent)`,
-          boxShadow: `0 0 12px 3px ${sparkColorSoft}`,
-        }}
-        animate={{
-          opacity: [0.3, 1, 0.4, 1, 0.25],
-          scaleX: [0.6, 1, 0.7, 1.05, 0.55],
-        }}
-        transition={{
-          duration: 1.5,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: delay + 0.3,
-        }}
-      />
-
-      {/* BOTTOM */}
-      <motion.div
-        className="absolute bottom-0 left-[8%] w-[84%] h-[3px] rounded-full"
-        style={{
-          background: `linear-gradient(to right, transparent, ${sparkColor}, #ffffff, ${sparkColor}, transparent)`,
-          boxShadow: `0 0 12px 3px ${sparkColorSoft}`,
-        }}
-        animate={{
-          opacity: [0.35, 0.95, 0.4, 1, 0.3],
-          scaleX: [0.55, 1.05, 0.65, 1, 0.5],
-        }}
-        transition={{
-          duration: 1.35,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: delay + 0.45,
-        }}
-      />
-
-      {/* Corner dots */}
-      {[
-        { top: 2, left: 2 },
-        { top: 2, right: 2 },
-        { bottom: 2, left: 2 },
-        { bottom: 2, right: 2 },
-      ].map((pos, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-2 h-2 rounded-full"
-          style={{
-            ...pos,
-            background: sparkColor,
-            boxShadow: `0 0 10px 3px ${sparkColor}`,
-          }}
-          animate={{
-            opacity: [0.2, 1, 0.3, 1, 0.15],
-            scale: [0.7, 1.4, 0.8, 1.3, 0.6],
-          }}
-          transition={{
-            duration: 1.2,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: delay + i * 0.12,
-          }}
-        />
-      ))}
-    </div>
-  );
-}
-
 export default function ProjectsSection() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Auto-play
+  useEffect(() => {
+    if (isPaused) return;
+
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev === projects.length - 1 ? 0 : prev + 1));
+    }, 1000); // 4 seconds
+
+    return () => clearInterval(interval);
+  }, [isPaused]);
+
+  const prev = () => {
+    setActiveIndex((prev) => (prev === 0 ? projects.length - 1 : prev - 1));
+  };
+
+  const next = () => {
+    setActiveIndex((prev) => (prev === projects.length - 1 ? 0 : prev + 1));
+  };
+
+  const getPosition = (index: number) => {
+    const diff = (index - activeIndex + projects.length) % projects.length;
+
+    if (diff === 0) return "center";
+    if (diff === 1 || diff === -(projects.length - 1)) return "right";
+    if (diff === projects.length - 1 || diff === -1) return "left";
+    return "hidden";
+  };
+
   return (
     <section id="projects" className="relative py-24 px-6 overflow-hidden">
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        {floatingWords.map((word, index) => (
-          <FloatingWord key={`${word}-${index}`} word={word} index={index} />
-        ))}
-
+      <div className="absolute inset-0 -z-10">
         <motion.div
-          className="absolute top-16 left-10 w-72 h-72 bg-primary/8 rounded-full blur-3xl"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-primary/10 rounded-full blur-3xl"
           animate={{
-            x: [0, 40, -20, 0],
-            y: [0, -30, 20, 0],
-            scale: [1, 1.15, 0.95, 1],
+            scale: [1, 1.15, 1],
+            opacity: [0.4, 0.6, 0.4],
           }}
-          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-20 right-10 w-96 h-96 bg-primary/6 rounded-full blur-3xl"
-          animate={{
-            x: [0, -50, 30, 0],
-            y: [0, 40, -25, 0],
-            scale: [1, 1.1, 0.9, 1],
-          }}
-          transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
       </div>
 
@@ -246,81 +104,193 @@ export default function ProjectsSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center mb-16"
+          transition={{ duration: 0.7 }}
+          className="text-center mb-16 mt-10 md:mt-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Projects</h2>
+
           <p className="text-muted-foreground max-w-xl mx-auto">
             A selection of my recent work — from live products to production
             applications.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{
-                duration: 0.7,
-                delay: index * 0.1,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              whileHover={{ y: -6 }}
-              className="group relative rounded-2xl border border-border bg-card/70 backdrop-blur-md p-6 transition-all duration-300 hover:border-cyan-400/40 hover:shadow-xl hover:shadow-cyan-500/10 overflow-hidden"
-            >
-              {/* Electric Sparks - always on */}
-              <ElectricSparks delay={index * 0.2} />
+    
+        <div
+          className="relative h-[440px] md:h-[480px] flex items-center justify-center"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          {projects.map((project, index) => {
+            const position = getPosition(index);
 
-              <div className="relative z-10">
-                <h3 className="text-xl font-semibold mb-3 group-hover:text-cyan-400 transition-colors duration-300">
-                  {project.title}
-                </h3>
-                <p className="text-muted-foreground text-sm mb-5 leading-relaxed">
-                  {project.description}
-                </p>
+            const variants = {
+              center: {
+                x: 0,
+                scale: 1,
+                opacity: 1,
+                zIndex: 30,
+                filter: "blur(0px)",
+                rotateY: 0,
+              },
+              left: {
+                x: "-58%",
+                scale: 0.75,
+                opacity: 0.45,
+                zIndex: 20,
+                filter: "blur(3px)",
+                rotateY: 12,
+              },
+              right: {
+                x: "58%",
+                scale: 0.75,
+                opacity: 0.45,
+                zIndex: 20,
+                filter: "blur(3px)",
+                rotateY: -12,
+              },
+              hidden: {
+                x: 0,
+                scale: 0.55,
+                opacity: 0,
+                zIndex: 10,
+                filter: "blur(6px)",
+                rotateY: 0,
+              },
+            };
 
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.tech.map((t) => (
-                    <Badge key={t} variant="secondary" className="text-xs">
-                      {t}
-                    </Badge>
-                  ))}
-                </div>
-
-                <div className="flex gap-3">
-                  {project.live && (
-                    <a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Button size="sm" variant="outline" className="gap-2">
-                        <IconExternalLink className="h-4 w-4" />
-                        Live
-                      </Button>
-                    </a>
+            return (
+              <motion.div
+                key={project.title}
+                className="absolute w-full max-w-md cursor-pointer"
+                initial={false}
+                animate={position}
+                variants={variants}
+                transition={{
+                  type: "spring",
+                  stiffness: 220,
+                  damping: 26,
+                }}
+                onClick={() => {
+                  if (position === "left") prev();
+                  if (position === "right") next();
+                }}
+                style={{ perspective: 1000 }}
+              >
+                <div
+                  className={`rounded-2xl border bg-card/80 backdrop-blur-md p-6 md:p-8 shadow-xl transition-all duration-300
+                    ${
+                      position === "center"
+                        ? "border-primary/50 shadow-primary/15 shadow-2xl"
+                        : "border-border/60"
+                    }`}
+                >
+                  {/* Active indicator line */}
+                  {position === "center" && (
+                    <motion.div
+                      layoutId="active-line"
+                      className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent"
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 30,
+                      }}
+                    />
                   )}
 
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                  <h3 className="text-xl md:text-2xl font-semibold mb-3">
+                    {project.title}
+                  </h3>
+                  <p className="text-muted-foreground text-sm mb-5 leading-relaxed">
+                    {project.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.tech.map((t) => (
+                      <Badge key={t} variant="secondary" className="text-xs">
+                        {t}
+                      </Badge>
+                    ))}
+                  </div>
+
+                  {position === "center" && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="flex gap-3"
                     >
-                      <Button size="sm" variant="ghost" className="gap-2">
-                        <IconBrandGithub className="h-4 w-4" />
-                        Code
-                      </Button>
-                    </a>
+                      {project.live && (
+                        <a
+                          href={project.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Button size="sm" variant="outline" className="gap-2">
+                            <IconExternalLink className="h-4 w-4" />
+                            Live
+                          </Button>
+                        </a>
+                      )}
+                      {project.github && (
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Button size="sm" variant="ghost" className="gap-2">
+                            <IconBrandGithub className="h-4 w-4" />
+                            Code
+                          </Button>
+                        </a>
+                      )}
+                    </motion.div>
                   )}
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
+
+        {/* Navigation */}
+        <div className="flex items-center justify-center gap-6 mt-10">
+          <button
+            onClick={prev}
+            className="p-3 rounded-full border border-border bg-card/60 hover:bg-primary/10 hover:border-primary/40 transition-all active:scale-95"
+          >
+            <IconChevronLeft size={22} />
+          </button>
+
+          {/* Dots + Progress */}
+          <div className="flex gap-2.5 items-center">
+            {projects.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveIndex(i)}
+                className="relative"
+              >
+                <div
+                  className={`w-2.5 h-2.5 rounded-full transition-all ${
+                    i === activeIndex
+                      ? "bg-primary scale-125"
+                      : "bg-muted-foreground/30"
+                  }`}
+                />
+              </button>
+            ))}
+          </div>
+
+          <button
+            onClick={next}
+            className="p-3 rounded-full border border-border bg-card/60 hover:bg-primary/10 hover:border-primary/40 transition-all active:scale-95"
+          >
+            <IconChevronRight size={22} />
+          </button>
+        </div>
+
+        {/* Auto-play indicator */}
+        <p className="text-center text-xs text-muted-foreground mt-4">
+          {isPaused ? "Paused" : "Auto-playing"} • Hover to pause
+        </p>
       </div>
     </section>
   );
