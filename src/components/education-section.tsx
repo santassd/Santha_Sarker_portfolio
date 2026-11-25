@@ -9,7 +9,7 @@ const education = [
     degree: "B.Sc. Honours in Mathematics",
     institution: "Cumilla Victoria Govt. College",
     location: "Cumilla, Bangladesh",
-    period: "2022 – Present",
+    period: "2026",
     result: null,
   },
   {
@@ -28,12 +28,49 @@ const education = [
   },
 ];
 
-
 const floatingItems = [
-  "∑", "∫", "π", "∞", "√", "∆", "θ", "λ", "≈", "≠", "∂", "∇",
-  "α", "β", "γ", "σ", "μ", "φ", "ψ", "Ω", "ℝ", "ℤ", "ℕ",
-  "sin", "cos", "tan", "log", "lim", "dx", "dy", "f(x)", "x²", "x³",
-  "E=mc²", "H₂O", "CO₂", "Δx", "Σx", "∛", "±", "≥", "≤",
+  "∑",
+  "∫",
+  "π",
+  "∞",
+  "√",
+  "∆",
+  "θ",
+  "λ",
+  "≈",
+  "≠",
+  "∂",
+  "∇",
+  "α",
+  "β",
+  "γ",
+  "σ",
+  "μ",
+  "φ",
+  "ψ",
+  "Ω",
+  "ℝ",
+  "ℤ",
+  "ℕ",
+  "sin",
+  "cos",
+  "tan",
+  "log",
+  "lim",
+  "dx",
+  "dy",
+  "f(x)",
+  "x²",
+  "x³",
+  "E=mc²",
+  "H₂O",
+  "CO₂",
+  "Δx",
+  "Σx",
+  "∛",
+  "±",
+  "≥",
+  "≤",
 ];
 
 function FloatingItem({ item, index }: { item: string; index: number }) {
@@ -77,13 +114,11 @@ function FloatingItem({ item, index }: { item: string; index: number }) {
 export default function EducationSection() {
   return (
     <section id="education" className="relative py-24 px-6 overflow-hidden">
-     
       <div className="absolute inset-0 -z-10 overflow-hidden">
         {floatingItems.map((item, index) => (
           <FloatingItem key={`${item}-${index}`} item={item} index={index} />
         ))}
 
-     
         <motion.div
           className="absolute top-16 left-8 w-80 h-80 bg-primary/15 rounded-full blur-3xl"
           animate={{

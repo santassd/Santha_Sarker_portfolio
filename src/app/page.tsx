@@ -6,7 +6,7 @@ import EducationSection from "@/components/education-section";
 import CertificatesSection from "@/components/certificates-section";
 import SkillsSection from "@/components/skills-section";
 import ContactSection from "@/components/contact-section";
-import Footer from "@/components/footer";
+
 import HeroSection from "@/components/hero-section.tsx";
 
 import AboutLamp from "@/components/about-lamp";
@@ -25,7 +25,7 @@ export default function Home() {
       <CertificatesSection />
 
       <ContactSection />
-      <Footer />
+    
     </main>
   );
 }
