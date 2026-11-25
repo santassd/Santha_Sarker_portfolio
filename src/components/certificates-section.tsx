@@ -1,4 +1,4 @@
-// src/components/certificates-section.tsx
+
 "use client";
 
 import { motion } from "motion/react";
@@ -13,7 +13,7 @@ const certificates = [
   },
   {
     title: "Certificate of Completion",
-    issuer: "Sysonex — Technology Intern",
+    issuer: "Sysonex — Frontend Intern",
     image: "/certificates/cert-2.jpg",
     period: "May 2024 – Nov 2024",
   },
