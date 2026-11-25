@@ -1,36 +1,33 @@
+// src/components/certificates-section.tsx
 "use client";
 
 import { motion } from "motion/react";
-import { IconCertificate } from "@tabler/icons-react";
+import { IconCertificate, IconExternalLink } from "@tabler/icons-react";
 
 const certificates = [
   {
-    title: "Certificate Placeholder 1",
-    issuer: "Coming Soon",
-    image: null, // তুমি পরে লিঙ্ক দিবে
+    title: "Work Experience Certificate",
+    issuer: "Ideapeel — Frontend Developer",
+    image: "/certificates/cert-1.jpg",
+    period: "Aug 2024 – Mar 2025",
   },
   {
-    title: "Certificate Placeholder 2",
-    issuer: "Coming Soon",
-    image: null,
-  },
-  {
-    title: "Certificate Placeholder 3",
-    issuer: "Coming Soon",
-    image: null,
+    title: "Certificate of Completion",
+    issuer: "Sysonex — Technology Intern",
+    image: "/certificates/cert-2.jpg",
+    period: "May 2024 – Nov 2024",
   },
 ];
 
 export default function CertificatesSection() {
   return (
-    <section id="certificates" className="relative py-24 px-6 overflow-hidden bg-muted/20">
-    
+    <section id="certificates" className="relative py-24 px-6 overflow-hidden">
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 right-1/4 w-80 h-80 bg-primary/5 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/3 left-1/4 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-pulse delay-700" />
+        <div className="absolute top-1/4 right-1/4 w-80 h-80 bg-primary/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/3 left-1/4 w-72 h-72 bg-primary/8 rounded-full blur-3xl" />
       </div>
 
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -44,43 +41,56 @@ export default function CertificatesSection() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {certificates.map((cert, index) => (
-            <motion.div
+            <motion.a
               key={index}
-              initial={{ opacity: 0, y: 50, scale: 0.95 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              href={cert.image}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.12 }}
-              whileHover={{ y: -10, transition: { duration: 0.3 } }}
-              className="group relative rounded-2xl border border-border bg-card overflow-hidden hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300"
+              transition={{ duration: 0.5, delay: index * 0.15 }}
+              whileHover={{ y: -8 }}
+              className="group relative block rounded-2xl border border-border bg-card overflow-hidden hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300"
             >
-             
-              <div className="relative h-48 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent flex items-center justify-center">
-                {cert.image ? (
+              <div className="relative aspect-[4/3] bg-gradient-to-br from-muted/80 to-muted/40 p-4 sm:p-6 flex items-center justify-center">
+                <div className="relative w-full h-full rounded-lg overflow-hidden shadow-lg shadow-black/20 ring-1 ring-white/10">
                   <img
                     src={cert.image}
                     alt={cert.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-[1.03]"
                   />
-                ) : (
-                  <div className="flex flex-col items-center gap-3 text-muted-foreground">
-                    <IconCertificate size={48} stroke={1.2} className="opacity-40 group-hover:opacity-70 transition-opacity" />
-                    <span className="text-sm">Image Coming Soon</span>
+                </div>
+
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                  <span className="flex items-center gap-2 px-4 py-2 rounded-full bg-background/90 text-sm font-medium backdrop-blur-sm">
+                    <IconExternalLink size={16} />
+                    View Full
+                  </span>
+                </div>
+              </div>
+
+              <div className="p-5 border-t border-border/50">
+                <div className="flex items-start gap-3">
+                  <div className="p-2 rounded-lg bg-primary/10 text-primary shrink-0">
+                    <IconCertificate size={20} />
                   </div>
-                )}
-
-
-                <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-300" />
+                  <div className="min-w-0">
+                    <h3 className="font-semibold group-hover:text-primary transition-colors">
+                      {cert.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground mt-0.5">
+                      {cert.issuer}
+                    </p>
+                    <p className="text-xs text-muted-foreground/70 mt-1">
+                      {cert.period}
+                    </p>
+                  </div>
+                </div>
               </div>
-
-              <div className="p-5">
-                <h3 className="font-semibold mb-1 group-hover:text-primary transition-colors">
-                  {cert.title}
-                </h3>
-                <p className="text-sm text-muted-foreground">{cert.issuer}</p>
-              </div>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
       </div>
